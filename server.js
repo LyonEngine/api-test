@@ -4,8 +4,13 @@ const fetch = require("node-fetch");
 const app = express();
 const port = 3000;
 
-// 静的ファイルを提供
+// 静的ファイルを提供するディレクトリを指定
 app.use(express.static("public"));
+
+// ルートパスにアクセスした際の処理
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
 
 // APIエンドポイント
 app.get("/api/test", async (req, res) => {
